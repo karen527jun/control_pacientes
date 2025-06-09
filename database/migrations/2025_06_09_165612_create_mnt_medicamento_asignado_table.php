@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->id('codigo');
+        Schema::create('mnt_medicamento_asignado', function (Blueprint $table) {
+            $table->id();
             $table->string('nombre',100);
-            $table->double('precio');
-            $table->bigInteger('marca')->unsigned();//para la relacion con la otra tabla
-            $table->foreign('marca')->references('codigo')->on('marcas'); //llave foranea
+            $table->string('dosis', 250);
+            $table->bigInteger('consulta')->unsigned();
+            $table->foreign('consulta')->references('id')->on('mnt_consulta');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('mnt_medicamento_asignado');
     }
 };
