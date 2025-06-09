@@ -12,7 +12,8 @@ services:
         volumes:
             - .:/var/www/html
         depends_on:
-            - mysql
+            mysql:
+                condition: service_healthy
         environment:
             APP_ENV: local
             DB_CONNECTION: mysql
@@ -25,6 +26,7 @@ services:
             VITE_APP_URL: http://localhost:8000
             VITE_HOST: localhost
             VITE_PORT: 5173
+        command: php artisan serve --host 0.0.0.0 --port 8000 && npm run dev
 
     mysql:
         image: mysql:8.0

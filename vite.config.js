@@ -4,20 +4,29 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/sass/app.scss',
+                'resources/js/app.js',
+            ],
             refresh: true,
         }),
     ],
     server: {
-        host: '0.0.0.0', // <--- Importante: Vite escucha en todas las interfaces dentro del contenedor
-        port: 5173,      // Puerto por defecto de Vite
+        host: '0.0.0.0',
+        port: 5173,
         hmr: {
-            host: 'localhost', // <--- Importante: El host que tu navegador usará para HMR
-            clientPort: 5173,  // El puerto que tu navegador usará para HMR
-            protocol: 'ws',    // Usa WebSocket para HMR
+            host: 'localhost',
+            clientPort: 5173,
+            protocol: 'ws',
         },
         watch: {
-            usePolling: true // A veces es necesario en entornos Docker si las actualizaciones no se detectan
-        }
+            usePolling: true
+        },
+        cors: {
+            origin: ['http://localhost:8000', 'http://0.0.0.0:8000'], // Permite ambos orígenes
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+            credentials: true,
+        },
     },
 });
