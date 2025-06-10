@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',100);
             $table->string('dosis', 250);
-            $table->bigInteger('consulta')->unsigned();
-            $table->foreign('consulta')->references('id')->on('mnt_consulta');
             $table->timestamps();
         });
     }

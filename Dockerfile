@@ -46,6 +46,9 @@ RUN npm install
 # Configura los permisos de storage y bootstrap/cache (importante para Laravel)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/
+RUN chmod -R 775 /var/www/html
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Comando principal para el contenedor: No necesitamos ejecutar nada aquí
 # porque 'php artisan serve' y 'npm run dev' se ejecutarán manualmente.
