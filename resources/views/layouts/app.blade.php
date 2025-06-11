@@ -56,12 +56,29 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pacientes">{{ __('Pacientes') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/doctores">{{ __('Doctores') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/citas">{{ __('Citas') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/consultas">{{ __('Consultas') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/examenes">{{ __('Examenes') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/medicamentos">{{ __('Medicamentos') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -80,7 +97,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="p-5">
             @yield('content')
         </main>
     </div>

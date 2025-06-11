@@ -27,36 +27,28 @@
                 <thead>
                     <th>Codigo</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Acciones</th>
+                    <th>Especialidad</th>
                 </thead>
             </table>
         </div>
     </div>
 
 @endsection
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var ruta = "";
+            var ruta = "/doctores/show";
             var columnas = [{
-                    data: 'codigo'
+                    data: 'id'
                 },
                 {
                     data: 'nombre'
                 },
                 {
-                    data: 'precio'
+                    data: 'especialidad'
                 },
-                {
-                    data: 'marca'
-                },
-                {
-                    data: 'codigo'
-                }
             ]
             dt = generateDataTable(ruta, columnas);
         });
     </script>
-@endsection --}}
+@endsection

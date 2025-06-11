@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Productos')
+@section('title', 'Pacientes')
 @section('content')
     <hr>
     <nav aria-label="breadcrumb">
@@ -25,10 +25,10 @@
         <div class="card-body">
             <table class="table table-hover table-bordered" id="datatables">
                 <thead>
-                    <th>Codigo</th>
+                    <th>id</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
                     <th>Acciones</th>
                 </thead>
             </table>
@@ -36,21 +36,21 @@
     </div>
 
 @endsection
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var ruta = "";
+            var ruta = "/pacientes/show";
             var columnas = [{
-                    data: 'codigo'
+                    data: 'id'
                 },
                 {
                     data: 'nombre'
                 },
                 {
-                    data: 'precio'
+                    data: 'edad'
                 },
                 {
-                    data: 'marca'
+                    data: 'peso'
                 },
                 {
                     data: 'codigo'
@@ -59,4 +59,4 @@
             dt = generateDataTable(ruta, columnas);
         });
     </script>
-@endsection --}}
+@endsection

@@ -15,7 +15,7 @@ class ConsultaController extends Controller
     }
     public function index()
     {
-        //
+        return view('consultas/show');
     }
 
     /**
