@@ -17,7 +17,7 @@ class Examen extends Model
     public $hidden = ['created_at', 'updated_at'];
     public $timestamps = true;
     public static function getFilteredData($search) {
-        return Paciente::select( 'mnt_examen.*')
+        return Examen::select( 'mnt_examen.*')
 
             ->where('mnt_examen.id', 'like', $search)
             ->orWhere('mnt_examen.nombre', 'like', $search);

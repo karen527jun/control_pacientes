@@ -33,12 +33,18 @@ Route::get('/doctores/show', [DoctorController::class, 'show']);
 
 //rutas citas
 Route::get('/citas', [CitaController::class, 'index']);
+Route::get('/citas/show', [CitaController::class, 'show']);
+
 
 //rutas consultas
 Route::get('/consultas', [ConsultaController::class, 'index']);
+Route::get('/consultas/show', [ConsultaController::class, 'show']);
+
 
 //rutas examenes
 Route::get('/examenes', [ExamenController::class, 'index']);
+Route::get('/examenes/show', [ExamenController::class, 'show']);
+
 
 //rutas medicamentos
 Route::get('/medicamentos', [MedicamentoController::class, 'index']);

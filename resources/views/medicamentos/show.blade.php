@@ -28,6 +28,7 @@
                     <th>ID</th>
                     <th>Medicamento</th>
                     <th>Dosis</th>
+                    <th>Acciones</th>
                 </thead>
             </table>
         </div>
@@ -46,6 +47,9 @@
                 },
                 {
                     data: 'dosis'
+                },
+                {
+                    data: 'id'
                 },
             ]
             dt = generateDataTable(ruta, columnas);

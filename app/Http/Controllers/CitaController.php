@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
 use Illuminate\Http\Request;
 
 class CitaController extends Controller
@@ -37,9 +38,39 @@ class CitaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+         $itemsPerPage = $request->input('length', 10);//registros por pagina
+        $skip = $request->input('start', 0);//obtener indice inicial
+
+        //para extraer todos los registros
+        if ($itemsPerPage == -1) {
+            $itemsPerPage =  Cita::count();
+            $skip = 0;
+        }
+
+        //config to ordering
+        $sortBy = $request->input('columns.'.$request->input('order.0.column').'.data',default: 'id');
+        $sort = ($request->input('order.0.dir') === 'asc') ? 'asc' : 'desc';
+
+        //config to search
+        $search = $request->input('search.value', '');
+        $search = "%$search%";
+
+        //get register filtered
+        $filteredCount = Cita::getFilteredData($search)->count();
+        $citas = Cita::allDataSearched($search, $sortBy, $sort, $skip, $itemsPerPage);
+        //esto es para reutilizar la funcion para generar datatable en functions.js
+        $citas = $citas->map(function ($citas) {
+            $citas->path = 'citas';//sirve para la url de editar y eliminar
+            return $citas;
+        });
+        //se retorna una array estructurado para el data table
+        return response()->json([
+            'draw' => intval($request->input('draw')),
+            'recordsTotal' => Cita::count(),
+            'recordsFiltered' => $filteredCount,
+            'data' => $citas]);
     }
 
     /**

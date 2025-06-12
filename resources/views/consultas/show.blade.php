@@ -26,9 +26,9 @@
             <table class="table table-hover table-bordered" id="datatables">
                 <thead>
                     <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
+                    <th>Fecha cita médica</th>
+                    <th>Examen</th>
+                    <th>Medicamentos</th>
                     <th>Acciones</th>
                 </thead>
             </table>
@@ -36,21 +36,21 @@
     </div>
 
 @endsection
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var ruta = "";
+            var ruta = "consultas/show";
             var columnas = [{
-                    data: 'codigo'
+                    data: 'id'
                 },
                 {
-                    data: 'nombre'
+                    data: 'cita'
                 },
                 {
-                    data: 'precio'
+                    data: 'examen'
                 },
                 {
-                    data: 'marca'
+                    data: 'medicamento'
                 },
                 {
                     data: 'codigo'
@@ -59,4 +59,4 @@
             dt = generateDataTable(ruta, columnas);
         });
     </script>
-@endsection --}}
+@endsection
