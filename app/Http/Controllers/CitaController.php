@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CitaController extends Controller
 {
@@ -30,9 +31,35 @@ class CitaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+     public function validarCampos($request){
+        return Validator::make($request->all(),[
+            'paciente'=>'required',
+            'doctor'=>'required',
+            'fecha'=>'required',
+            'hora'=>'required'
+        ], [
+            'paciente.required'=> 'El paciente es obligatorio',
+            'doctor.required'=> 'El doctor es obligatorio',
+            'fecha.required'=> 'La fecha es obligatoria',
+            'hora.required'=> 'La hora es obligatoria',
+
+        ]);
+    }
     public function store(Request $request)
     {
-        //
+         $validacion = $this->validarCampos($request);
+        if($validacion->fails()){
+            return response()->json([
+                'code'=>422,
+                'message'=>$validacion->messages()
+            ], 422);
+        }else{
+            $cita = Cita::create($request->all());
+            return response()->json([
+                'code'=>200,
+                'message'=>'Se creó el registro correctamente'
+            ], 200);
+        }
     }
 
     /**

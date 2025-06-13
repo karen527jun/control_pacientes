@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Examen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ExamenController extends Controller
 {
@@ -22,9 +23,20 @@ class ExamenController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-        //
+        return view('examenes/create');
+    }
+
+    public function validarCampos($request){
+        return Validator::make($request->all(),[
+            'nombre'=>'required',
+            'descripcion'=>'required',
+        ], [
+            'nombre.required'=> 'El nombre es obligatorio',
+            'descripcion.required'=> 'La descripción es obligatoria',
+        ]);
     }
 
     /**
@@ -32,7 +44,19 @@ class ExamenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validacion = $this->validarCampos($request);
+        if($validacion->fails()){
+            return response()->json([
+                'code'=>422,
+                'message'=>$validacion->messages()
+            ], 422);
+        }else{
+            $paciente = Examen::create($request->all());
+            return response()->json([
+                'code'=>200,
+                'message'=>'Se creó el registro correctamente'
+            ], 200);
+        }
     }
 
     /**

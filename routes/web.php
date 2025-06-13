@@ -26,14 +26,24 @@ Route::get('/', function () {
 //rutas paciente
 Route::get('/pacientes', [PacienteController::class, 'index']);
 Route::get('/pacientes/show', [PacienteController::class, 'show']);
+Route::get('/pacientes/create', [PacienteController::class, 'create']);
+Route::post('/pacientes', [PacienteController::class, 'store']);
+
+
 
 //rutas doctores
 Route::get('/doctores', [DoctorController::class, 'index']);
 Route::get('/doctores/show', [DoctorController::class, 'show']);
+Route::get('/doctores/create', [DoctorController::class, 'create']);
+Route::post('/doctores', [DoctorController::class, 'store']);
+
 
 //rutas citas
 Route::get('/citas', [CitaController::class, 'index']);
 Route::get('/citas/show', [CitaController::class, 'show']);
+Route::get('/citas/create', [CitaController::class, 'create']);
+Route::get('/citas', [CitaController::class, 'store']);
+
 
 
 //rutas consultas
@@ -44,11 +54,17 @@ Route::get('/consultas/show', [ConsultaController::class, 'show']);
 //rutas examenes
 Route::get('/examenes', [ExamenController::class, 'index']);
 Route::get('/examenes/show', [ExamenController::class, 'show']);
+Route::get('/examenes/create', [ExamenController::class, 'create']);
+Route::post('/examenes', [ExamenController::class, 'store']);
+
 
 
 //rutas medicamentos
 Route::get('/medicamentos', [MedicamentoController::class, 'index']);
 Route::get('/medicamentos/show', [MedicamentoController::class, 'show']);
+Route::get('/medicamentos/create', [MedicamentoController::class, 'create']);
+Route::post('/medicamentos', [MedicamentoController::class, 'store']);
+
 
 
 

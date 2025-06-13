@@ -15,7 +15,7 @@
                     <h3>Listado de examenes</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-md btn-dark" id="addForm" path="/products/create" data-bs-toggle="modal"
+                    <button class="btn btn-md btn-dark" id="addForm" path="/examenes/create" data-bs-toggle="modal"
                         data-bs-target="#myModal">
                         Crear Examen
                     </button>

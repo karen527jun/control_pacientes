@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MedicamentoController extends Controller
 {
@@ -24,15 +25,38 @@ class MedicamentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('medicamentos/create');
     }
+
+    public function validarCampos($request){
+        return Validator::make($request->all(),[
+            'nombre'=>'required',
+            'dosis'=>'required',
+        ], [
+            'nombre.required'=> 'El nombre es obligatorio',
+            'dosis.required'=> 'El dosis es obligatorio',
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validacion = $this->validarCampos($request);
+        if($validacion->fails()){
+            return response()->json([
+                'code'=>422,
+                'message'=>$validacion->messages()
+            ], 422);
+        }else{
+            $paciente = Medicamento::create($request->all());
+            return response()->json([
+                'code'=>200,
+                'message'=>'Se creó el registro correctamente'
+            ], 200);
+        }
     }
 
     /**

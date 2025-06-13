@@ -1,7 +1,7 @@
 <h1>Crear</h1>
 <h5>Formulario para crear Clientes</h5>
 <hr>
-<form action="/clients" method="POST" id="frmSaveData">
+<form action="/pacientes" method="POST" id="frmSaveData">
     <div class="row">
         <div class="col">
             <label>Nombre</label>
@@ -12,25 +12,16 @@
         </span>
         <div class="col">
             <label>Edad</label>
-            <input type="text" name="edad" class="form-control">
+            <input type="number" name="edad" class="form-control">
         </div>
         <span class="invalid-feedback d-block" key="edad" role="alert">
             <strong class="mensaje"></strong>
         </span>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}">{{ $item->nombre }}</option>
-                @endforeach
-            </select>
+        <div class="col">
+            <label>Peso (Libras)</label>
+            <input type="Number" name="peso" class="form-control">
         </div>
-        <span class="invalid-feedback d-block" key="categoria" role="alert">
-            <strong class="mensaje"></strong>
-        </span>
+    </div>
     </div>
     <hr>
     <div class="row text-center">

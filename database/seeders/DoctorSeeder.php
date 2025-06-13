@@ -14,6 +14,16 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-
+        $data = array(
+            [
+            'nombre'=>'Walter Alcides Roemro Portillo',
+            'especialidad'=> 'Dermatologo'
+            ],
+            [
+            'nombre'=>'Karla Lisseth Romero López',
+            'especialidad'=> 'Médico general'
+            ],
+        );
+        DB::table('mnt_doctor')->insert($data);
     }
 }

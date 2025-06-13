@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Productos')
+@section('title', 'Medicamentos')
 @section('content')
     <hr>
     <nav aria-label="breadcrumb">
@@ -15,7 +15,7 @@
                     <h3>Listado de medicamentos</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-md btn-dark" id="addForm" path="/products/create" data-bs-toggle="modal"
+                    <button class="btn btn-md btn-dark" id="addForm" path="/medicamentos/create" data-bs-toggle="modal"
                         data-bs-target="#myModal">
                         Crear Medicamento
                     </button>
@@ -40,7 +40,7 @@
         $(document).ready(function() {
             var ruta = "/medicamentos/show";
             var columnas = [{
-                    data: 'codigo'
+                    data: 'id'
                 },
                 {
                     data: 'nombre'

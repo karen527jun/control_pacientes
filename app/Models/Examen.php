@@ -13,6 +13,7 @@ class Examen extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         'nombre',
+        'descripcion'
     ];
     public $hidden = ['created_at', 'updated_at'];
     public $timestamps = true;

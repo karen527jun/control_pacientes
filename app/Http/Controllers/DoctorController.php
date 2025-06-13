@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
@@ -24,15 +25,37 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('doctores/create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    public function validarCampos($request){
+        return Validator::make($request->all(),[
+            'nombre'=>'required',
+            'especialidad'=>'required',
+        ], [
+            'nombre.required'=> 'El nombre es obligatorio',
+            'especialidad.required'=> 'El especialidad es obligatorio',
+
+        ]);
+    }
     public function store(Request $request)
     {
-        //
+        $validacion = $this->validarCampos($request);
+        if($validacion->fails()){
+            return response()->json([
+                'code'=>422,
+                'message'=>$validacion->messages()
+            ], 422);
+        }else{
+            $paciente = Doctor::create($request->all());
+            return response()->json([
+                'code'=>200,
+                'message'=>'Se creó el registro correctamente'
+            ], 200);
+        }
     }
 
     /**
