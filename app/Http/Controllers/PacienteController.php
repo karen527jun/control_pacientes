@@ -105,7 +105,8 @@ class PacienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        return view('pacientes/update')->with(['paciente'=>$paciente]);
     }
 
     /**
@@ -113,7 +114,31 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $paciente =  Paciente::find($id);
+            if($paciente){
+                $paciente->update([
+                    'nombre'=>$request->nombre,
+                    'edad'=>$request->edad,
+                    'peso'=>$request->peso,
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -121,6 +146,18 @@ class PacienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        if($paciente){
+            $paciente->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

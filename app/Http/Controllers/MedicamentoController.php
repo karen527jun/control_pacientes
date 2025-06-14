@@ -102,7 +102,8 @@ class MedicamentoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $medicamento = Medicamento::find($id);
+        return view('medicamentos/update')->with(['medicamento'=>$medicamento]);
     }
 
     /**
@@ -110,7 +111,30 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $examen =  Medicamento::find($id);
+            if($examen){
+                $examen->update([
+                    'nombre'=>$request->nombre,
+                    'dosis'=>$request->dosis,
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -118,6 +142,18 @@ class MedicamentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $medicamento = Medicamento::find($id);
+        if($medicamento){
+            $medicamento->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

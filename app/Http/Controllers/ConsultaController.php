@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
 use App\Models\Consulta;
+use App\Models\Doctor;
+use App\Models\Examen;
+use App\Models\Medicamento;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ConsultaController extends Controller
 {
@@ -24,15 +30,47 @@ class ConsultaController extends Controller
      */
     public function create()
     {
-        //
+        $doctor = Doctor::all();
+        $paciente = Paciente::all();
+        $citas = Cita::all();
+        $medicamentos = Medicamento::all();
+        $examenes = Examen::all();
+        return view('consultas/create')->with(['citas'=> $citas, 'medicamentos'=>$medicamentos, 'examenes'=>$examenes ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
+      public function validarCampos($request){
+        return Validator::make($request->all(),[
+            'detalle'=>'required',
+            'diagnostico'=>'required',
+            'medicamento'=>'nullable',
+            'examen'=>'nullable',
+            'cita_medica'=>'required'
+        ], [
+            'detalle.required'=> 'El detalle es obligatorio',
+            'diagnostico.required'=> 'El diagnostico es obligatorio',
+            'cita_medica.required'=> 'La cita es obligatoria',
+
+        ]);
+    }
     public function store(Request $request)
     {
-        //
+         $validacion = $this->validarCampos($request);
+        if($validacion->fails()){
+            return response()->json([
+                'code'=>422,
+                'message'=>$validacion->messages()
+            ], 422);
+        }else{
+            $consulta = Consulta::create($request->all());
+            return response()->json([
+                'code'=>200,
+                'message'=>'Se creó el registro correctamente'
+            ], 200);
+        }
     }
 
     /**
@@ -78,7 +116,11 @@ class ConsultaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $citas = Cita::all();
+        $medicamentos = Medicamento::all();
+        $examenes = Examen::all();
+        $consulta = Consulta::find($id);
+        return view('consultas/update')->with(['consulta'=>$consulta,'citas'=> $citas, 'medicamentos'=>$medicamentos, 'examenes'=>$examenes ]);
     }
 
     /**
@@ -86,7 +128,34 @@ class ConsultaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $consulta = Consulta::find($id);
+            if($consulta){
+                $consulta->update([
+                    'cita_medica'=>$request->cita_medica,
+                    'detalle'=>$request->detalle,
+                    'diagnostico'=>$request->diagnostico,
+                    'medicamento'=>$request->medicamento,
+                    'examen'=>$request->examen,
+
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -94,6 +163,18 @@ class ConsultaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cita = Cita::find($id);
+        if($cita){
+            $cita->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

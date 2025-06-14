@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\Doctor;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,7 +27,9 @@ class CitaController extends Controller
      */
     public function create()
     {
-        //
+        $pacientes = Paciente::all();
+        $doctores = Doctor::all();
+        return view('citas/create')->with(['pacientes'=>$pacientes, 'doctores'=>$doctores]);
     }
 
     /**
@@ -105,7 +109,10 @@ class CitaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pacientes = Paciente::all();
+        $doctores = Doctor::all();
+        $cita = Cita::find($id);
+        return view('citas/update')->with(['pacientes'=>$pacientes, 'doctores'=>$doctores,'cita'=>$cita]);
     }
 
     /**
@@ -113,7 +120,32 @@ class CitaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $cita =  Cita::find($id);
+            if($cita){
+                $cita->update([
+                    'paciente'=>$request->paciente,
+                    'doctor'=>$request->doctor,
+                    'fecha'=>$request->fecha,
+                    'hora'=>$request->hora,
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -121,6 +153,18 @@ class CitaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cita = Cita::find($id);
+        if($cita){
+            $cita->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

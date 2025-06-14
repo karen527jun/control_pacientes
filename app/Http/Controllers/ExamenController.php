@@ -102,7 +102,8 @@ class ExamenController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $examen = Examen::find($id);
+        return view('examenes/update')->with(['examen'=>$examen]);
     }
 
     /**
@@ -110,7 +111,30 @@ class ExamenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $examen = Examen::find($id);
+            if($examen){
+                $examen->update([
+                    'nombre'=>$request->nombre,
+                    'descripcion'=>$request->descripcion,
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -118,6 +142,18 @@ class ExamenController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $examen = Examen::find($id);
+        if($examen){
+            $examen->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

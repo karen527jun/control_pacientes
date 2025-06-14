@@ -101,7 +101,8 @@ class DoctorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $doctor = Doctor::find($id);
+        return view('doctores/update')->with(['doctor'=>$doctor]);
     }
 
     /**
@@ -109,7 +110,30 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validacion = $this->validarCampos($request);
+          if($validacion->fails()){
+            return response()->json([
+                'code'=> 422,
+                'message' => $validacion->messages()
+            ],422);
+        }else{
+            $doctor =  Doctor::find($id);
+            if($doctor){
+                $doctor->update([
+                    'nombre'=>$request->nombre,
+                    'especialidad'=>$request->especialidad,
+                ]);
+                return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+            }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
+        }
     }
 
     /**
@@ -117,6 +141,18 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $doctor = Doctor::find($id);
+        if($doctor){
+            $doctor->delete();
+            return response()->json([
+                'code'=> 200,
+                'message' => "Registro actualizado"
+            ],200);
+        }else{
+                return response()->json([
+                'code'=> 404,
+                'message' => "Registro no encontrado"
+            ],404);
+            }
     }
 }

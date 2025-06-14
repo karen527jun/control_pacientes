@@ -13,9 +13,10 @@ class Consulta extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         'cita_medica',
-        'doctor',
-        'fecha',
-        'hora',
+        'detalle',
+        'diagnostico',
+        'medicamento',
+        'examen',
     ];
     public $hidden = ['created_at', 'updated_at'];
     public $timestamps = true;
