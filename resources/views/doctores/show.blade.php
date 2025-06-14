@@ -25,7 +25,7 @@
         <div class="card-body">
             <table class="table table-hover table-bordered" id="datatables">
                 <thead>
-                    <th>Codigo</th>
+                    <th>id</th>
                     <th>Nombre</th>
                     <th>Especialidad</th>
                 </thead>
@@ -48,7 +48,7 @@
                     data: 'especialidad'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);

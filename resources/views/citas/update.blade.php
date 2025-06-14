@@ -1,37 +1,50 @@
 <h1>Modificar</h1>
 <h5>Formulario para actualizar clientes</h5>
 <hr>
-<form action="/clients/{{ $cliente->codigo }}" method="POST" id="frmUpdateData">
+<form action="/citas/{{ $cita->id }}" method="POST" id="frmUpdateData">
     <div class="row">
         <div class="col">
-            <label>Nombre</label>
-            <input value="{{ $cliente->nombre }}" type="text" name="nombre" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <label>fecha</label>
+            <input type="date" value="{{$cita->fecha}}" name="fecha" class="form-control">
         </div>
+        <span class="invalid-feedback d-block" key="fecha" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
         <div class="col">
-            <label>Edad</label>
-            <input value="{{ $cliente->edad }}" type="text" name="edad" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <label>Hora</label>
+            <input value="{{$cita->hora}}" type="time" name="hora" class="form-control">
         </div>
+        <span class="invalid-feedback d-block" key="hora" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
     </div>
     <div class="row">
         <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}" {{ $item->codigo == $cliente->categoria ? 'selected' : '' }}>
-                        {{ $item->nombre }}</option>
+            <label>Paciente</label>
+            <select name="paciente" class="form-select">
+                <option value="">--Selecciona un paciente--</option>
+                @foreach ($pacientes as $item)
+                   <option value="{{$item->id}}" {{ ($item->id == $cita->paciente) ? 'selected':''}}>{{$item->nombre}}</option>
                 @endforeach
             </select>
-            <span class="invalid-feedback d-block" key="categoria" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
         </div>
+        <span class="invalid-feedback d-block" key="paciente" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Doctor</label>
+            <select name="doctor" class="form-select">
+                <option value="">--Selecciona un doctor--</option>
+                @foreach ($doctores as $item)
+                    <option value="{{ $item->id }}" {{($item->id == $cita->doctor)?'selected':''}}>{{ $item->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="doctor" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
     </div>
     <hr>
     <div class="row text-center">

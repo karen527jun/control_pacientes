@@ -15,7 +15,7 @@
                     <h3>Listado de citas asignadas</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-md btn-dark" id="addForm" path="/products/create" data-bs-toggle="modal"
+                    <button class="btn btn-md btn-dark" id="addForm" path="/citas/create" data-bs-toggle="modal"
                         data-bs-target="#myModal">
                         Crear Cita
                     </button>
@@ -57,7 +57,7 @@
                     data: 'hora'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);

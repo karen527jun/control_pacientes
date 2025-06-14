@@ -1,34 +1,48 @@
 <h1>Crear</h1>
-<h5>Formulario para crear Clientes</h5>
+<h5>Formulario para crear Crear una cita</h5>
 <hr>
-<form action="/clients" method="POST" id="frmSaveData">
+<form action="/citas" method="POST" id="frmSaveData">
     <div class="row">
         <div class="col">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control">
+            <label>fecha</label>
+            <input type="date" name="fecha" class="form-control">
         </div>
-        <span class="invalid-feedback d-block" key="nombre" role="alert">
+        <span class="invalid-feedback d-block" key="fecha" role="alert">
             <strong class="mensaje"></strong>
         </span>
         <div class="col">
-            <label>Edad</label>
-            <input type="text" name="edad" class="form-control">
+            <label>Hora</label>
+            <input type="time" name="hora" class="form-control">
         </div>
-        <span class="invalid-feedback d-block" key="edad" role="alert">
+        <span class="invalid-feedback d-block" key="hora" role="alert">
             <strong class="mensaje"></strong>
         </span>
     </div>
     <div class="row">
         <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}">{{ $item->nombre }}</option>
+            <label>Paciente</label>
+            <select name="paciente" class="form-select">
+                <option value="">--Selecciona un paciente--</option>
+                @foreach ($pacientes as $item)
+                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                 @endforeach
             </select>
         </div>
-        <span class="invalid-feedback d-block" key="categoria" role="alert">
+        <span class="invalid-feedback d-block" key="paciente" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>Doctor</label>
+            <select name="doctor" class="form-select">
+                <option value="">--Selecciona un doctor--</option>
+                @foreach ($doctores as $item)
+                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="doctor" role="alert">
             <strong class="mensaje"></strong>
         </span>
     </div>

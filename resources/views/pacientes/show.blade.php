@@ -53,7 +53,7 @@
                     data: 'peso'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);

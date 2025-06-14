@@ -1,34 +1,62 @@
 <h1>Crear</h1>
 <h5>Formulario para crear Clientes</h5>
 <hr>
-<form action="/clients" method="POST" id="frmSaveData">
+<form action="/consultas" method="POST" id="frmSaveData">
+    <div class="row">
+        <div class="col-6">
+            <label>Cita</label>
+            <select name="cita_medica" class="form-select">
+                <option value="">--Seleccionar una cita--</option>
+                @foreach ($citas as $item)
+                    <option value="{{ $item->id }}">{{ $item->fecha }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="cita_medica" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
     <div class="row">
         <div class="col">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control">
+            <label>Detalle</label>
+            <textarea type="text" name="detalle" class="form-control"></textarea>
         </div>
-        <span class="invalid-feedback d-block" key="nombre" role="alert">
+        <span class="invalid-feedback d-block" key="detalle" role="alert">
             <strong class="mensaje"></strong>
         </span>
         <div class="col">
-            <label>Edad</label>
-            <input type="text" name="edad" class="form-control">
+            <label>Diagnostico</label>
+            <textarea type="text" name="diagnostico" class="form-control"></textarea>
         </div>
-        <span class="invalid-feedback d-block" key="edad" role="alert">
+        <span class="invalid-feedback d-block" key="diagnostico" role="alert">
             <strong class="mensaje"></strong>
         </span>
     </div>
     <div class="row">
         <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}">{{ $item->nombre }}</option>
+            <label>medicamentos</label>
+            <select name="medicamento" class="form-select">
+                <option value="">--Seleccionar medicamentos--</option>
+                @foreach ($medicamentos as $item)
+                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                 @endforeach
             </select>
         </div>
-        <span class="invalid-feedback d-block" key="categoria" role="alert">
+        <span class="invalid-feedback d-block" key="medicamento" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>examen</label>
+            <select name="examen" class="form-select">
+                <option value="">--Seleccionar examen--</option>
+                @foreach ($examenes as $item)
+                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="examen" role="alert">
             <strong class="mensaje"></strong>
         </span>
     </div>

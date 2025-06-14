@@ -49,7 +49,7 @@
                     data: 'descripcion'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);

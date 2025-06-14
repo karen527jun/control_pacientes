@@ -1,37 +1,63 @@
 <h1>Modificar</h1>
-<h5>Formulario para actualizar clientes</h5>
+<h5>Formulario para actualizar consulta</h5>
 <hr>
-<form action="/clients/{{ $cliente->codigo }}" method="POST" id="frmUpdateData">
+<form action="/consultas/{{ $consulta->id }}" method="POST" id="frmUpdateData">
+    <div class="row">
+        <div class="col-6">
+            <label>Cita</label>
+            <select name="cita_medica" class="form-select">
+                @foreach ($citas as $item)
+                    <option value="{{ $item->id }}" {{ ($item->id == $consulta->cita_medica) ? 'selected':''}}>{{ $item->fecha }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="cita_medica" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
     <div class="row">
         <div class="col">
-            <label>Nombre</label>
-            <input value="{{ $cliente->nombre }}" type="text" name="nombre" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <label>Detalle</label>
+            <textarea type="text" value="" name="detalle" class="form-control">{{$consulta->detalle}}</textarea>
         </div>
+        <span class="invalid-feedback d-block" key="detalle" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
         <div class="col">
-            <label>Edad</label>
-            <input value="{{ $cliente->edad }}" type="text" name="edad" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <label>Diagnostico</label>
+            <textarea type="text" name="diagnostico" class="form-control">{{$consulta->diagnostico}}</textarea>
         </div>
+        <span class="invalid-feedback d-block" key="diagnostico" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
     </div>
     <div class="row">
         <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}" {{ $item->codigo == $cliente->categoria ? 'selected' : '' }}>
-                        {{ $item->nombre }}</option>
+            <label>medicamentos</label>
+            <select name="medicamento" class="form-select">
+                <option value="">--Seleccionar medicamentos--</option>
+                @foreach ($medicamentos as $item)
+                    <option value="{{ $item->id }}" {{ ($item->id == $consulta->medicamento) ? 'selected':''}}>{{ $item->nombre }}</option>
                 @endforeach
             </select>
-            <span class="invalid-feedback d-block" key="categoria" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
         </div>
+        <span class="invalid-feedback d-block" key="medicamento" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>examen</label>
+            <select name="examen" class="form-select">
+                <option value="">--Seleccionar examen--</option>
+                @foreach ($examenes as $item)
+                    <option value="{{ $item->id }}" {{ ($item->id == $consulta->examen) ? 'selected':''}}>{{ $item->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+        <span class="invalid-feedback d-block" key="examen" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
     </div>
     <hr>
     <div class="row text-center">

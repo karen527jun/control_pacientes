@@ -5,19 +5,19 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item "><a href="/">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Productos</li>
+            <li class="breadcrumb-item active" aria-current="page">Consultas</li>
         </ol>
     </nav>
     <div class="card">
         <div class="card-header">
             <div class="row text-center">
                 <div class="col">
-                    <h3>Listado de pacientes</h3>
+                    <h3>Listado de consultas</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-md btn-dark" id="addForm" path="/products/create" data-bs-toggle="modal"
+                    <button class="btn btn-md btn-dark" id="addForm" path="/consultas/create" data-bs-toggle="modal"
                         data-bs-target="#myModal">
-                        Crear Paciente
+                        Crear Consulta
                     </button>
                 </div>
             </div>
@@ -25,8 +25,9 @@
         <div class="card-body">
             <table class="table table-hover table-bordered" id="datatables">
                 <thead>
-                    <th>Codigo</th>
-                    <th>Fecha cita médica</th>
+                    <th>id</th>
+                    <th>Diagnostico</th>
+                    <th>Detalle</th>
                     <th>Examen</th>
                     <th>Medicamentos</th>
                     <th>Acciones</th>
@@ -44,7 +45,10 @@
                     data: 'id'
                 },
                 {
-                    data: 'cita'
+                    data: 'diagnostico'
+                },
+                {
+                    data: 'detalle'
                 },
                 {
                     data: 'examen'
@@ -53,7 +57,7 @@
                     data: 'medicamento'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);

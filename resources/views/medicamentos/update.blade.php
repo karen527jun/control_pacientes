@@ -1,37 +1,22 @@
 <h1>Modificar</h1>
 <h5>Formulario para actualizar clientes</h5>
 <hr>
-<form action="/clients/{{ $cliente->codigo }}" method="POST" id="frmUpdateData">
-    <div class="row">
+<form action="/medicamentos/{{ $medicamento->id }}" method="POST" id="frmUpdateData">
+  <div class="row">
         <div class="col">
             <label>Nombre</label>
-            <input value="{{ $cliente->nombre }}" type="text" name="nombre" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <input type="text" value="{{$medicamento -> nombre}}" name="nombre" class="form-control">
         </div>
+        <span class="invalid-feedback d-block" key="nombre" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
         <div class="col">
-            <label>Edad</label>
-            <input value="{{ $cliente->edad }}" type="text" name="edad" class="form-control">
-            <span class="invalid-feedback d-block" key="nombre" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
+            <label>Dosis</label>
+            <input value="{{$medicamento -> dosis}}" type="text" name="dosis" class="form-control">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <label>Categoria</label>
-            <select name="categoria" class="form-select">
-                <option value="">--Seleccionar categoria--</option>
-                @foreach ($categorias as $item)
-                    <option value="{{ $item->codigo }}" {{ $item->codigo == $cliente->categoria ? 'selected' : '' }}>
-                        {{ $item->nombre }}</option>
-                @endforeach
-            </select>
-            <span class="invalid-feedback d-block" key="categoria" role="alert">
-                <strong class="mensaje"></strong>
-            </span>
-        </div>
+        <span class="invalid-feedback d-block" key="dosis" role="alert">
+            <strong class="mensaje"></strong>
+        </span>
     </div>
     <hr>
     <div class="row text-center">
