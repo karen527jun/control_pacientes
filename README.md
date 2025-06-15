@@ -1,6 +1,6 @@
 # Sistema para el control de pacientes (Proyecto final)
 
-Este sistema es para el control de pacientes básico, para registrar pacientes, doctores, configurar citas y consultas
+Este sistema es para el control de pacientes básico, para registrar pacientes, doctores, configurar citas, consultas
 y en estas asignar examenes y diagnósticos
 
 ---
