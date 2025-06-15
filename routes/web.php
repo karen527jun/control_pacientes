@@ -30,7 +30,7 @@ Route::get('/pacientes/create', [PacienteController::class, 'create']);
 Route::post('/pacientes', [PacienteController::class, 'store']);
 Route::get('/pacientes/{id}/edit', [PacienteController::class, 'edit']);
 Route::put('/pacientes/{id}', [PacienteController::class, 'update']);
-Route::delete('/pacientes{id}', [PacienteController::class, 'destroy']);
+Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy']);
 
 
 
