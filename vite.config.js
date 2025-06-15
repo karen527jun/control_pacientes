@@ -23,10 +23,11 @@ export default defineConfig({
             usePolling: true
         },
         cors: {
-            origin: ['http://localhost:8000', 'http://0.0.0.0:8000'], // Permite ambos orígenes
-            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-            allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-            credentials: true,
+            // origin: ['http://localhost:8000', 'http://0.0.0.0:8000'], // Permite ambos orígenes
+            // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            // allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+            // credentials: true,
+             origin: 'http://127.0.0.1:8000'
         },
     },
 });

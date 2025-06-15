@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Control de pacientes') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -22,11 +22,11 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" style="height:100vh; background-image: url('/images/background.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Control Pacientes
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -56,12 +56,29 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pacientes">{{ __('Pacientes') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/doctores">{{ __('Doctores') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/citas">{{ __('Citas') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/consultas">{{ __('Consultas') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/examenes">{{ __('Examenes') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/medicamentos">{{ __('Medicamentos') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -80,7 +97,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="p-5">
             @yield('content')
         </main>
     </div>

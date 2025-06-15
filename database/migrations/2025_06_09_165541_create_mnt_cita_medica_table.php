@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('doctor')->unsigned();
             $table->foreign('doctor')->references('id')->on('mnt_doctor');
             $table->date('fecha');
-            $table->date('hora');
+            $table->string('hora');
             $table->timestamps();
         });
     }

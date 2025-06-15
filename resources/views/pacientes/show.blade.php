@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Productos')
+@section('title', 'Pacientes')
 @section('content')
     <hr>
     <nav aria-label="breadcrumb">
@@ -15,7 +15,7 @@
                     <h3>Listado de pacientes</h3>
                 </div>
                 <div class="col">
-                    <button class="btn btn-md btn-dark" id="addForm" path="/products/create" data-bs-toggle="modal"
+                    <button class="btn btn-md btn-dark" id="addForm" path="/pacientes/create" data-bs-toggle="modal"
                         data-bs-target="#myModal">
                         Crear Paciente
                     </button>
@@ -25,10 +25,10 @@
         <div class="card-body">
             <table class="table table-hover table-bordered" id="datatables">
                 <thead>
-                    <th>Codigo</th>
+                    <th>id</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
                     <th>Acciones</th>
                 </thead>
             </table>
@@ -36,27 +36,27 @@
     </div>
 
 @endsection
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            var ruta = "";
+            var ruta = "/pacientes/show";
             var columnas = [{
-                    data: 'codigo'
+                    data: 'id'
                 },
                 {
                     data: 'nombre'
                 },
                 {
-                    data: 'precio'
+                    data: 'edad'
                 },
                 {
-                    data: 'marca'
+                    data: 'peso'
                 },
                 {
-                    data: 'codigo'
+                    data: 'id'
                 }
             ]
             dt = generateDataTable(ruta, columnas);
         });
     </script>
-@endsection --}}
+@endsection
