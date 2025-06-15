@@ -1,4 +1,4 @@
-# Nombre de tu Aplicación
+# Sistema para el control de pacientes (Proyecto final)
 
 Este sistema es para el control de pacientes básico, para registrar pacientes, doctores, configurar citas y consultas
 y en estas asignar examenes y diagnósticos
